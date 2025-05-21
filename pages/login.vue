@@ -26,7 +26,8 @@
             </template>
 
             <template #footer>
-                <button type="submit" form="login-form">SE CONNECTER</button>
+                <!-- <button type="submit" form="login-form">SE CONNECTER</button> -->
+                <CTAButton form="login-form" label="Se connecter"/>
             </template>
         </LittleCard>
     </div>
@@ -87,26 +88,6 @@ const password = ref('')
 
     #login-form {
         width: 100%;
-    }
-
-    button {
-        width: 100%;
-        height: 3rem;
-        background-color: $secondary-color;
-        color: $primary-color;
-        border-radius: 1rem;
-        border: none;
-        font-family: 'Alata', sans-serif;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        cursor: pointer;
-
-        &:hover {
-            background-color: $primary-color;
-            color: $secondary-color;
-            border: 1px solid $secondary-color;
-            transition: all 0.5s ease-in-out;
-        }
     }
 }
 
