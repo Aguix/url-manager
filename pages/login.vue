@@ -65,8 +65,6 @@ const password = ref('')
     justify-content: center;
     align-items: center;
 
-    background-color: $tertiary-color;
-
     .card-title {
         display: flex;
         flex-direction: column;
