@@ -24,6 +24,8 @@ header {
     height: 3.5rem;
     padding: 1rem;
     background-color: $primary-color;
+
+    position: fixed;
     
     font-family: 'Inter', sans-serif;
 
