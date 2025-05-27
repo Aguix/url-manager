@@ -8,36 +8,28 @@ export default defineEventHandler(async event => {
     const body = await readBody(event);
     assert(body, UserLoginValidator);
 
-    // const user = await prisma.user.findUnique({
-    //     where: {email: body.email},
-    // });
-    // if (!user) {
-    //     throw createError({
-    //         statusCode: 401,
-    //         statusMessage: 'User not found',
-    //         message: 'User not found',
-    //         data: body
-    //     });
-    // }
-
     const user = await prisma.user.findUniqueOrThrow({
         where: {email: body.email},
-    })
+    });
 
-    if (compareSync(body.password, user.password)) {
-
-        return {
-            ...user,
-            password: undefined,
-            jwt: jwt.sign({ id: user.id }, process.env.JWT_SECRET as string)
-        }
-    } else {
-        return {
-            statusCode: 401,
-            statusMessage: 'Invalid credentials',
-            message: 'Invalid credentials',
-            data: body
-        }
+    if (!compareSync(body.password, user.password)) {
+        throw createError({ statusCode: 401, statusMessage: 'Invalid credentials' })
     }
     
+    const jwtToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: '365d' });
+    setCookie(event, 'auth_token', jwtToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 60 * 60 * 24 * 365
+    });
+    return {
+        user: {
+            id: user.id,
+            email: user.email,
+            username: user.username
+        },
+        token: jwtToken
+    }
 })
