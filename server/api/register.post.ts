@@ -19,11 +19,31 @@ export default defineEventHandler(async event => {
         });
     }
 
+    const isEmailValid = await prisma.verificationCode.findUnique({
+        where: {email: body.email, sessionToken: body.sessionToken},
+    });
+    if (!isEmailValid) {
+        throw createError({
+            statusCode: 400,
+            message: 'Invalid email or session token',
+        });
+    }
+
     const hashed_password = hashSync(body.password, 12);
-    return await prisma.user.create({
+    const newUser = await prisma.user.create({
         data: {
-            ...body,
+            email: body.email,
+            username: body.username,
             password: hashed_password
         }}
     );
+
+    await prisma.verificationCode.delete({
+        where: { email: body.email, sessionToken: body.sessionToken }
+    });
+
+    return {
+        ...newUser,
+        password: undefined
+    }
 })
