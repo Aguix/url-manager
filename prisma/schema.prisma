@@ -29,5 +29,5 @@ model VerificationCode {
   code      String   @db.VarChar(6)
   createdAt DateTime @default(now())
   expiresAt DateTime @default(dbgenerated("now() + interval '10 minutes'"))
-  sessionToken String? @unique @db.VarChar(255)
+  sessionToken String? @unique @db.Char(36)
 }
