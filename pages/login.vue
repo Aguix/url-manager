@@ -4,7 +4,7 @@
             <template #title>
                 <div class="card-title">
                     <h2>Se connecter</h2>
-                    <NuxtLink to="/">Aller à la page de création de compte ></NuxtLink>
+                    <NuxtLink to="/register">Aller à la page de création de compte ></NuxtLink>
                 </div>
             </template>
 
@@ -26,7 +26,6 @@
             </template>
 
             <template #footer>
-                <!-- <button type="submit" form="login-form">SE CONNECTER</button> -->
                 <CTAButton form="login-form" label="Se connecter"/>
             </template>
         </LittleCard>
