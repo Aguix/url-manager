@@ -22,3 +22,11 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+
+model VerificationCode {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique @db.VarChar(255)
+  code      String   @db.VarChar(6)
+  createdAt DateTime @default(now())
+  expiresAt DateTime @default(dbgenerated("now() + interval '10 minutes'"))
+}

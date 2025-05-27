@@ -1,0 +1,17 @@
+meta {
+  name: Send Verification Code
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/api/email/send_verification_code
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email" : "{{EMAIL}}"
+  }
+}
