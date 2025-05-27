@@ -12,3 +12,9 @@ export const UserLoginValidator = object({
     email: refine(string(), 'Email', (value) => validator.isEmail(value)),
     password: string(),
 });
+
+export interface User {
+    id: number;
+    email: string;
+    username: string;
+}
