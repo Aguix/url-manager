@@ -1,0 +1,18 @@
+meta {
+  name: Check Verification Code
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{BASE_URL}}/api/email/check_verification_code
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "{{EMAIL}}",
+    "code": "XXXXXX"
+  }
+}
