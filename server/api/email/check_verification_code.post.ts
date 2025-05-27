@@ -15,17 +15,16 @@ export default defineEventHandler(async event => {
     console.log('Existing verification code:', existingCode);
 
     const sessionToken = crypto.randomUUID();
-    if (existingCode && existingCode.code === body.code) {
-        // If the code matches, delete it from the database
+    if (existingCode && !existingCode.sessionToken && existingCode.code === body.code) {
         await prisma.verificationCode.update({
             where: { email: targetEmail },
             data: { sessionToken: sessionToken }
         });
-        return { success: true, message: 'Verification code is valid.' };
+        return { success: true, message: 'Verification code is valid.', sessionToken: sessionToken };
     }
 
     throw createError({
         statusCode: 400,
-        message: 'Invalid verification code or email.'
-    });    
+        message: 'Invalid verification code, email, or code already used.'
+    });
 });

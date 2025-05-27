@@ -38,7 +38,8 @@ export default defineEventHandler(async event => {
             where: { email: targetEmail },
             update: {
                 code: verificationCode,
-                expiresAt: new Date(Date.now() + 15 * 60 * 1000)
+                expiresAt: new Date(Date.now() + 15 * 60 * 1000),
+                sessionToken: null
             },
             create: {
                 email: targetEmail,
