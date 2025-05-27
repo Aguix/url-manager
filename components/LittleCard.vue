@@ -30,6 +30,6 @@
     border-radius: 30px;
 
     padding: 1.5rem;
-    gap: 1.5rem;
+    gap: 2.5rem;
 }
 </style>
