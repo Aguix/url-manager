@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts', '@prisma/nuxt', 'nuxt-nodemailer'],
+  modules: ['@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts', '@prisma/nuxt', 'nuxt-nodemailer', '@pinia/nuxt'],
   css: ['@/assets/css/reset.scss'],
   vite: {
     css: {
