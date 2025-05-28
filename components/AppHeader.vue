@@ -4,10 +4,10 @@
             URL Manager
         </NuxtLink>
         <div class="buttons">
-            <NuxtLink to="/" class="link button">
+            <NuxtLink to="/login" class="link button">
                 Login
             </NuxtLink>
-            <NuxtLink to="/" class="link button">
+            <NuxtLink to="/register" class="link button">
                 Register
             </NuxtLink>
         </div>
