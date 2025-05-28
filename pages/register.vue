@@ -15,6 +15,8 @@ import RegisterStep2 from '@/components/register/RegisterStep2.vue'
 import RegisterStep3 from '@/components/register/RegisterStep3.vue'
 import RegisterStep4 from '@/components/register/RegisterStep4.vue'
 
+definePageMeta({ middleware: 'auth' });
+
 const currentStep = ref(1);
 const form = ref({
     email: '',

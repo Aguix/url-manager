@@ -30,13 +30,14 @@
             </template>
         </LittleCard>
     </div>
-
 </template>
 
 <script setup lang="ts">
 import { InputFieldType } from '@/types/InputFieldType'
+definePageMeta({ middleware: 'auth' });
+
 const handleLogin = async () => {
-    const data = await $fetch('/api/login', {
+    await $fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify({
             email: email.value,
@@ -45,9 +46,9 @@ const handleLogin = async () => {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
+    });
 
-    console.log(data);
+    await navigateTo('/dashboard', { replace: true });
 }
 
 const email = ref('')
