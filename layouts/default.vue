@@ -1,6 +1,16 @@
 <template>
-    <div style="height: 100vh">
+    <div>
         <AppHeader />
         <slot />
     </div>
 </template>
+
+<style lang="scss" scoped>
+
+div {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+</style>
