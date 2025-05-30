@@ -3,16 +3,31 @@
         <NuxtLink to="/" class="link logo">
             URL Manager
         </NuxtLink>
-        <div class="buttons">
-            <NuxtLink to="/login" class="link button">
+        <div v-if="auth.isConnected && auth.user" class="buttons">
+            <span class="link">{{ auth.user.username }}</span>
+            <NuxtLink to="/" class="link button">
+                Mon dashboard
+            </NuxtLink>
+            <NuxtLink to="/" class="link button">
+                Nouveau raccourci
+            </NuxtLink>
+            <button @click="auth.logout" class="">Logout</button>
+        </div>
+        <div v-else class="buttons">
+            <NuxtLink to="/" class="link button">
                 Login
             </NuxtLink>
-            <NuxtLink to="/register" class="link button">
+            <NuxtLink to="/" class="link button">
                 Register
             </NuxtLink>
         </div>
     </header>
 </template>
+
+<script setup lang="ts">
+const auth = useAuthStore();
+
+</script>
 
 <style lang="scss" scoped>
 
@@ -38,6 +53,8 @@ header {
 
     .buttons {
         display: flex;
+        justify-content: center;
+        align-items: center;
         gap: 1rem;
 
         .button {
