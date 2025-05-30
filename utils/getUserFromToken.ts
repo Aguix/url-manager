@@ -39,6 +39,4 @@ export async function getUserFromToken(event: H3Event): Promise<User> {
             statusMessage: 'Unauthorized - Invalid token'
         })
     }
-
-
 }
